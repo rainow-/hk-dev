@@ -1,0 +1,28 @@
+{
+  "name": "harald-kismul-dev",
+  "version": "1.0.0",
+  "description": "A photo gallery web site of paintings made by Harald Kismul",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainow-/hk-dev.git"
+  },
+  "keywords": [
+    "website",
+    "gallery",
+    "react",
+    "express"
+  ],
+  "author": "Thomas Heritier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rainow-/hk-dev/issues"
+  },
+  "homepage": "https://github.com/rainow-/hk-dev#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  }
+}
