@@ -1,2 +1,5 @@
 #ignore README.md
 /client/README.md
+
+#dependencies
+/node_modules
