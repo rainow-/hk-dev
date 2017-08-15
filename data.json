@@ -1,10 +1,14 @@
 [
 	{
-		"id": "",
+		"src": "", 			// image dir/file path
+		"id": "",			
 		"title": "",
 		"location": "",
 		"size": "",
 		"type": "",
 		"date": "",
+		"width": "",		// original width of image
+		"height": "",		// original height of image
+		"alt": "",			// alternative text
 	},
 ]
