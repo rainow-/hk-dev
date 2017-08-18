@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Gallery from './PhotoGallery';
+import PhotoGallery from './PhotoGallery';
+import App from './TestApp';
 
 ReactDOM.render(
-  <Gallery />,
+  <PhotoGallery />,
   document.getElementById('root')
 );
