@@ -8,7 +8,6 @@ import Client from './Client';
 class PhotoGallery extends React.Component{
 	constructor(){
 		super();
-
 		this.state = {photos:null, pageNum:1, totalPages:1, loadedAll: false, currentImage:0};
 		this.handleScroll = this.handleScroll.bind(this);
 		this.loadMorePhotos = this.loadMorePhotos.bind(this);
@@ -138,7 +137,7 @@ class PhotoGallery extends React.Component{
 			} else {
 			return(
 				<div className="App">
-				<div id="msg-app-loading" className="loading-msg">Loading</div>
+					<div id="msg-app-loading" className="loading-msg">Loading</div>
 				</div>
 			);
 		}
