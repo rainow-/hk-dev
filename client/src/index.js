@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PhotoGallery from './PhotoGallery';
+import GalleryPage from './composites/GalleryPage';
 import './index.css';
 
 ReactDOM.render(
-  <PhotoGallery />,
-  document.getElementById('container')
+  <GalleryPage />,
+  document.getElementById('app')
 );

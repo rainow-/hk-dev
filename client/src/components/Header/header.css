@@ -1,0 +1,101 @@
+.fixed {
+	border-bottom: 1px solid black;
+	width: 100%;
+	position: fixed;
+	z-index: 999;
+	background-color: white;
+}
+
+.flexbox {
+	height: 90px;
+	display: flex;
+	align-items: center;
+	transition: all 0.4s;
+}
+
+#title {
+	padding-left: 20%;
+	flex: 2;
+	font-family: Marvel;
+	font-size: 50px;
+	font-weight: 800;
+}
+
+nav {
+	padding-right: 20%;
+	flex: 2;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+a {
+	align-content: center;
+	text-decoration: none;
+}
+
+h2{
+	font-family: "Helvetica";
+	font-size: 30px;
+	font-weight: 100;
+	color: black;
+	margin-left: 10px;
+}
+
+h2:hover {
+	color: gray;
+}
+
+.smaller {
+	height: 70px;
+}
+
+.smaller #title {
+	font-size: 45px;
+	transition: font 1.4s;
+}
+
+/*
+#fixed {
+	width: 100%;
+	height: 90px;
+	border-bottom: 1px solid black;
+	background-color: white;
+	display: fixed;
+	z-index: 999;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+}
+
+#title {
+	flex: 1;
+	padding-left: 30px;
+}
+
+nav {
+	display: flex;
+	flex-direction: row;
+	flex: 3;
+	justify-content: flex-end;
+}
+
+a {
+	text-decoration: none
+}
+
+h2 {
+	color: black;
+	padding-right: 20px;
+}
+
+h2:hover {
+	color: gray;
+}
+
+.smaller {
+	height: 70px;
+}
+*/

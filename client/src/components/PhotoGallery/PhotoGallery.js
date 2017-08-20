@@ -3,7 +3,8 @@ import Gallery from 'react-photo-gallery';
 import Measure from 'react-measure';
 import Lightbox from 'react-images';
 import _ from 'lodash';
-import Client from './Client';
+import Client from '../../utils/Client';
+import './photogallery.css';
 
 class PhotoGallery extends React.Component{
 	constructor(){
@@ -66,7 +67,7 @@ class PhotoGallery extends React.Component{
 			this.setState({
 				photos: this.state.photos ? this.state.photos.concat(photos) : photos,
 				pageNum: this.state.pageNum + 1,
-				totalPages: data.photoset.pages
+				totalPages: data.pages
 			});
 		});
 	}
@@ -118,7 +119,7 @@ class PhotoGallery extends React.Component{
 		// no loading sign if its all loaded
 		if (this.state.photos){
 			return(
-				<div className="App">
+				<div className="PhotoGallery">
 					{this.renderGallery()}
 					<Lightbox 
 						theme={{container: { background: 'rgba(0, 0, 0, 0.85)' }}}
@@ -136,7 +137,7 @@ class PhotoGallery extends React.Component{
 			);
 			} else {
 			return(
-				<div className="App">
+				<div className="PhotoGallery">
 					<div id="msg-app-loading" className="loading-msg">Loading</div>
 				</div>
 			);
