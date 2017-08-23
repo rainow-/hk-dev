@@ -1,5 +1,5 @@
 .PhotoGallery {
-  padding-top: 100px; /* to offset the fixed header (which uses overflow) */
+  padding-top: 10px; 
 }
 #Gallery {
   margin: 0 auto;
