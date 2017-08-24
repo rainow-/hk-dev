@@ -1,15 +1,17 @@
 import React from 'react';
+
 import Header from '../components/Header/Header';
 import Navbar from '../components/Navbar/Navbar';
 import PhotoGallery from '../components/PhotoGallery/PhotoGallery';
-import './gallerypage.css';
+//import './gallerypage.css';
 
 class GalleryPage extends React.Component {
 	render() {
-		return(
-			<div className="wrapper">
+		const path = this.props.match.path;
+		return ( 
+			<div>
 				<Header />
-				<Navbar />
+				<Navbar path={path}/>
 				<PhotoGallery />
 			</div>
 		);

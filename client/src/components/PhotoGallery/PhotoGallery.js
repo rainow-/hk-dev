@@ -2,9 +2,23 @@ import React from 'react';
 import Gallery from 'react-photo-gallery';
 import Measure from 'react-measure';
 import Lightbox from 'react-images';
-import _ from 'lodash';
 import Client from '../../utils/Client';
 import './photogallery.css';
+
+function debounce(func, wait, immediate) {
+	let timeout;
+	return function() {
+		const context = this, args = arguments;
+		let later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		const callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
 class PhotoGallery extends React.Component{
 	constructor(){
@@ -19,8 +33,11 @@ class PhotoGallery extends React.Component{
 	}
 	componentDidMount() {
 		this.loadMorePhotos();
-		this.loadMorePhotos = _.debounce(this.loadMorePhotos, 200);
+		this.loadMorePhotos = debounce(this.loadMorePhotos, 200);
 		window.addEventListener('scroll', this.handleScroll);
+	}
+	componentWillUnmount() {
+		window.removeEventListener('scroll', this.handleScroll);
 	}
 	handleScroll(){
 		let scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
@@ -37,12 +54,12 @@ class PhotoGallery extends React.Component{
 			return;
 		}
 
-		const value = {
+		const params = {
 			page: this.state.pageNum,
 			per_page: 21,
 		};
 
-		Client.photoSet(value, (data) => {
+		Client.photoSet(params, (data) => {
 			let photos = data.photoset.photo.map((item) => {
 				let aspectRatio = parseFloat(item.width_o / item.height_o);
 				return {
@@ -109,6 +126,9 @@ class PhotoGallery extends React.Component{
 		    		if (width >= 1024){
 						cols = 3;
 		    		}
+		    		if (width >= 1824){
+						cols = 4;
+					}
 		    		return <Gallery photos={this.state.photos} cols={cols} onClickPhoto={this.openLightbox} />
 				}
 	    	}

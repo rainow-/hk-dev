@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GalleryPage from './composites/GalleryPage';
 
-//import './index.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './components/App/App';
+
+import './index.css';
 require('bootstrap/dist/css/bootstrap.min.css');
 
 ReactDOM.render(
-  <GalleryPage />,
-  document.getElementById('app')
+	<Router>
+  		<App />
+	</Router>,
+  	document.getElementById('app')
 );
