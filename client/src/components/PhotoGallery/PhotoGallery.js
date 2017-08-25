@@ -129,7 +129,7 @@ class PhotoGallery extends React.Component{
 		    		if (width >= 1824){
 						cols = 4;
 					}
-		    		return <Gallery photos={this.state.photos} cols={cols} onClickPhoto={this.openLightbox} />
+		    		return <Gallery photos={this.state.photos} cols={cols} onClickPhoto={this.openLightbox} /*margin:{}*/ />
 				}
 	    	}
 	    	</Measure>
