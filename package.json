@@ -9,8 +9,7 @@
     ]
   },
   "scripts": {
-    "prod-start": "node server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"node ./bin/www\" \"npm run client\"",
     "server": "babel-node start-server.js",
     "client": "babel-node start-client.js",
     "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
