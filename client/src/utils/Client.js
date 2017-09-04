@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 function photoSet(query, cb) {
-	return fetch(`/api/gallery?per_page=${query.per_page}&page=${query.page}`, {
+  var search = ``;
+  if(query.searchValue) search = `&s=${query.searchValue}`; 
+
+	return fetch(`/api/gallery?per_page=${query.per_page}&page=${query.page}` + search, {
 		accept: 'application/json',
 	}).then(checkStatus)
 		.then(parseJSON)

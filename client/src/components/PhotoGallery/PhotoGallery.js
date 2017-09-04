@@ -21,8 +21,8 @@ function debounce(func, wait, immediate) {
 };
 
 class PhotoGallery extends React.Component{
-	constructor(){
-		super();
+	constructor(props){
+		super(props);
 		this.state = {photos:null, pageNum:1, totalPages:1, loadedAll: false, currentImage:0};
 		this.handleScroll = this.handleScroll.bind(this);
 		this.loadMorePhotos = this.loadMorePhotos.bind(this);
@@ -39,6 +39,17 @@ class PhotoGallery extends React.Component{
 	componentWillUnmount() {
 		window.removeEventListener('scroll', this.handleScroll);
 	}
+	componentWillReceiveProps(nextProp) {
+		if(nextProp.searchTextSubmitted !== this.props.searchTextSubmitted){
+			this.state = {photos:null, pageNum:1, totalPages:1, loadedAll: false, currentImage:0}; // we reset state
+		}
+	}
+	componentDidUpdate(prevProp, prevState) {
+		if(prevProp.searchTextSubmitted !== this.props.searchTextSubmitted){
+			this.loadMorePhotos();
+			this.loadMorePhotos = debounce(this.loadMorePhotos, 200);
+		}
+	}
 	handleScroll(){
 		let scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
 		if ((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)) {
@@ -54,10 +65,11 @@ class PhotoGallery extends React.Component{
 			return;
 		}
 
-		const params = {
+		var params = {
 			page: this.state.pageNum,
 			per_page: 21,
 		};
+		if(this.props.searchTextSubmitted) params.searchValue = this.props.searchTextSubmitted;
 
 		Client.photoSet(params, (data) => {
 			let photos = data.photoset.photo.map((item) => {
@@ -85,6 +97,10 @@ class PhotoGallery extends React.Component{
 				photos: this.state.photos ? this.state.photos.concat(photos) : photos,
 				pageNum: this.state.pageNum + 1,
 				totalPages: data.pages
+			});
+			// set loaded all to true on queries that won't load more than 1 pages
+			this.setState({
+				loadedAll: this.state.pageNum > this.state.totalPages ? true : false
 			});
 		});
 	}
@@ -138,6 +154,15 @@ class PhotoGallery extends React.Component{
 	render(){
 		// no loading sign if its all loaded
 		if (this.state.photos){
+			if (this.state.photos.length === 0){
+				return(
+					<div className="container">
+						<div className="alert alert-warning">
+							<div className="text-center"><h3><strong>Info!</strong> Søket ga ingen treff.</h3></div>
+						</div>
+					</div>
+				);
+			}
 			return(
 				<div className="PhotoGallery">
 					{this.renderGallery()}
@@ -155,7 +180,7 @@ class PhotoGallery extends React.Component{
 					{!this.state.loadedAll && <div className="loading-msg" id="msg-loading-more">Loading</div>}
 				</div>
 			);
-			} else {
+		} else {
 			return(
 				<div className="PhotoGallery">
 					<div id="msg-app-loading" className="loading-msg">Loading</div>

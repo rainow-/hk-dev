@@ -1,11 +1,15 @@
 import React from 'react';
-
 import { Link, NavLink } from 'react-router-dom';
+
+import SearchField from './SearchField';
 //import './navbar.css';
 
 class Navbar extends React.Component {
+	constructor(props){
+		super(props);
+	}
 	render() {
-		const path = this.props.path;
+		const path = this.props.path ? this.props.path.startsWith('/gallery') : false;
 		return (
 			<nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 				<Link 
@@ -39,21 +43,17 @@ class Navbar extends React.Component {
 							</NavLink>
 						</li>
 					</ul>
-					
+					{ path &&  
+						<SearchField 
+							onSearchSubmit={this.props.onSearchSubmit} 
+							onSearchTextChanged={this.props.onSearchTextChanged}
+							searchText={this.props.searchText}
+						/>
+					}
 				</div>
 			</nav>
 		);
 	}
 }
-
-
-/*
-{ path === "/gallery" &&  
-	<form className="form-inline my-2 my-lg-0">
-		<input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
-		<button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	</form>
-}
-*/
 
 export default Navbar;

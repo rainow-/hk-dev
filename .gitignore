@@ -4,18 +4,10 @@
 #dependencies
 /node_modules
 
+#misc
 .TODO
+data.json
 image-tools.js
-
-# Elastic Beanstalk Files
-
-.elasticbeanstalk/*
-
-!.elasticbeanstalk/*.cfg.yml
-
-!.elasticbeanstalk/*.global.yml
-
-.ebextensions/*
-
-.ebignore
+populatedb.js
+/utils
 

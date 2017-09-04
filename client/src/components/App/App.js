@@ -29,20 +29,19 @@ const NoMatch = ({ location }) => (
 );
 
 const App = () => (
-	<div>
-		<Switch>
-			<Route path="/gallery" component={GalleryPage} />
-			<Route path="/about" component={AboutPage} />
-			
-			<Route exact path="/" render={() => (
-				<Redirect
-					to="/gallery"
-				/>
-			)} />
+	<Switch>
+		<Route path="/gallery/s/:searchText" component={GalleryPage} />
+		<Route path="/gallery" component={GalleryPage} />
+		<Route path="/about" component={AboutPage} />
+		
+		<Route exact path="/" render={() => (
+			<Redirect
+				to="/gallery"
+			/>
+		)} />
 
-			<Route component={NoMatch} />
-		</Switch>
-	</div>
+		<Route component={NoMatch} />
+	</Switch>
 );
 
 export default App;
