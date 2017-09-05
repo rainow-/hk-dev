@@ -10,12 +10,7 @@ class GalleryPage extends React.Component {
 		super();
 		this.state = { searchText: '', searchTextSubmitted: '' };
 
-		this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
 		this.handleSearchTextChanged = this.handleSearchTextChanged.bind(this);
-	}
-
-	handleSearchSubmit(value) {
-		this.setState({ searchTextSubmitted: value });
 	}
 
 	handleSearchTextChanged(value) {
@@ -25,18 +20,21 @@ class GalleryPage extends React.Component {
 	render() {
 		const path = this.props.match.path;
 		const searchText = this.state.searchText;
-		const searchTextSubmitted = this.props.match.params.searchText || this.state.searchTextSubmitted;
+		const searchTypeSubmitted = this.props.match.params.searchType;
+		const searchTextSubmitted = this.props.match.params.searchText;
 
 		return ( 
 			<div>
 				<Header />
 				<Navbar 
 					path={path} 
-					onSearchSubmit={this.handleSearchSubmit}
 					onSearchTextChanged={this.handleSearchTextChanged}
 					searchText={searchText}
 				/>
-				<PhotoGallery searchTextSubmitted={searchTextSubmitted} />
+				<PhotoGallery 
+					searchTypeSubmitted={searchTypeSubmitted}
+					searchTextSubmitted={searchTextSubmitted} 
+				/>
 			</div>
 		);
 	}

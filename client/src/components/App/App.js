@@ -30,7 +30,7 @@ const NoMatch = ({ location }) => (
 
 const App = () => (
 	<Switch>
-		<Route path="/gallery/s/:searchText" component={GalleryPage} />
+		<Route path="/gallery/:searchType/:searchText" component={GalleryPage} />
 		<Route path="/gallery" component={GalleryPage} />
 		<Route path="/about" component={AboutPage} />
 		

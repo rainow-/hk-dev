@@ -70,6 +70,8 @@ class PhotoGallery extends React.Component{
 			per_page: 21,
 		};
 		if(this.props.searchTextSubmitted) params.searchValue = this.props.searchTextSubmitted;
+		if(this.props.searchTypeSubmitted && this.props.searchTypeSubmitted !== 's')
+			params.searchType = this.props.searchTypeSubmitted;
 
 		Client.photoSet(params, (data) => {
 			let photos = data.photoset.photo.map((item) => {

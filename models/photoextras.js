@@ -8,7 +8,8 @@ var PhotoExtrasSchema = Schema(
         width: Number,
     	height: Number,
     	signed: Boolean,
-        date_painted: String,
+        date_painted: String,   // date for queries on text indexing
+        date: Date,             // date for queries w/ sort by date
         canvas_type: String,
         b_info: String,
         motive: String,
@@ -30,7 +31,19 @@ PhotoExtrasSchema
     return 'kr. ' + this.price + ',-';
 });
 
+// indexes for extras
+// text index
 PhotoExtrasSchema
 .index( { "$**": "text" } );
+
+// single field indexes
+PhotoExtrasSchema
+.index( { date: 1 } );
+
+PhotoExtrasSchema
+.index( { motive: 1 } );
+
+PhotoExtrasSchema
+.index( { canvas_type: 1 } );
 
 module.exports = mongoose.model('PhotoExtras', PhotoExtrasSchema);
