@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import SearchField from './SearchField';
-//import './navbar.css';
 
 class Navbar extends React.Component {
 	render() {
@@ -44,7 +43,7 @@ class Navbar extends React.Component {
 						<ul className="navbar-nav">
 							<div className="dropdown mr-2">
 								<button className="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Sorter etter...
+									Sorter etter ...
 								</button>
 								<div className="dropdown-menu">
 									<Link className="dropdown-item" to="/gallery/sort/newest">Nyeste først</Link>

@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
 
-import GalleryPage from '../../composites/GalleryPage';
-import AboutPage from '../../composites/AboutPage';
+import GalleryPage from '../composites/GalleryPage';
+import AboutPage from '../composites/AboutPage';
 
-import './app.css';
+import '../css/app.css';
 
 const NoMatch = ({ location }) => (
 	<div className="container">

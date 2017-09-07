@@ -2,7 +2,7 @@ var Photo = require('../models/photo');
 var PhotoExtras = require('../models/photoextras');
 var Promise = require('bluebird');
 
-exports.gallery_list = function(req, res, next){
+exports.photo_list = function(req, res, next){
 	
 	let params = { 
 		perPage: req.query.per_page,
@@ -17,6 +17,19 @@ exports.gallery_list = function(req, res, next){
 		processReq(res, next, params);
 	}
 }
+
+/*exports.photo_details = function(req, res, next){
+	const id = req.params.id;
+
+	PhotoExtras.findById(id)
+	.then((photoExtras) => {
+		res.json({extras: photoExtras});
+	})
+	.catch((err) => {
+		console.log('error on search query:', err);
+		res.status(500).json({error: err});	
+	});
+}*/
 
 let processReqWithSearchText = function(req, res, next, params){
 
@@ -40,8 +53,6 @@ let processReqWithSearchText = function(req, res, next, params){
 	if(req.query.s) p2.sort(sort);
 
 	return Promise.join(p1, p2.exec(),(count, dataSet) => {
-		console.log("Promise from database resolved. Data received -> query: " + req.query.s + ' -- count -> ' + count);
-
 		let pages = Math.ceil(count / params.perPage);
 		let replace = function(i) {
 			let photo = i.photo;
@@ -67,7 +78,6 @@ let processReq = function(res, next, params){
 				.exec();
 
 	return Promise.join(p1, p2, function(count, dataSet) {
-		console.log("Promise from database resolved. Data received -> count: " + count);
 		let pages = Math.ceil(count / params.perPage);
 		res.json({photoset: { photo: dataSet }, pages: pages});
 	})

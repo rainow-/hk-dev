@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Header from '../components/Header/Header';
-import Navbar from '../components/Navbar/Navbar';
-import PhotoGallery from '../components/PhotoGallery/PhotoGallery';
-//import './gallerypage.css';
+import Header from '../components/Header';
+import Navbar from '../components/Navbar';
+import PhotoGallery from '../components/PhotoGallery';
 
 class GalleryPage extends React.Component {
 	constructor() {

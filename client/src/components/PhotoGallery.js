@@ -2,8 +2,11 @@ import React from 'react';
 import Gallery from 'react-photo-gallery';
 import Measure from 'react-measure';
 import Lightbox from 'react-images';
-import Client from '../../utils/Client';
-import './photogallery.css';
+
+import Client from '../utils/Client';
+import Infobox from './Infobox';
+
+import '../css/photogallery.css';
 
 function debounce(func, wait, immediate) {
 	let timeout;
@@ -76,11 +79,12 @@ class PhotoGallery extends React.Component{
 		Client.photoSet(params, (data) => {
 			let photos = data.photoset.photo.map((item) => {
 				let aspectRatio = parseFloat(item.width_o / item.height_o);
+				let caption = item.extras ? React.createElement(Infobox, item.extras, null) : item.filename;
 				return {
 					src: (aspectRatio >= 3) ? item.url_c : item.url_m,
 					width: item.width_o,
 					height: item.height_o,
-					caption: item.filename,
+					caption: /*item.filename,*/ caption,
 					alt: item.filename,
 					srcset:[
 						item.url_m+' '+item.width_m+'w',

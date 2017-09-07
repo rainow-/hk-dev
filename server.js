@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 var mongoose = require('mongoose');
+var morgan = require('morgan');
 
 var gallery = require('./routes/gallery');
 
@@ -14,6 +15,8 @@ console.log("STATIC DIR:", STATIC_DIR);
 mongoose.Promise = require('bluebird');
 const mongoDB = require(UTILS_DIR + 'database-conf').mongoDB;
 mongoose.connect(mongoDB);
+
+app.use(morgan('common'));
 
 // Routes
 app.use('/api', gallery);
